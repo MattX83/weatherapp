@@ -1,0 +1,51 @@
+html {
+  background: white;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+    text-align: center
+}
+
+.weather-container {
+    text-align: left;
+    margin: 0%;
+    padding: 0px 0px 0px 4px;
+    width: 216px;
+    height: auto;
+    color: black;
+}
+
+.city {
+    font-size: 25px;
+    font-weight: 800;
+    margin: 0px
+}
+
+.icon {
+    margin: -10px 0px 0px -5px;
+    padding: 0px;
+}
+
+.weather {
+    font-size: 18px;
+    font-weight: bold;
+    margin: -12px 0px 0px 0px;
+}
+
+.temp, .feels {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 1px 0px;
+}
+
+#map {
+    height: 100%;
+  }
+
+
+
+
