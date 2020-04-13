@@ -1,9 +1,9 @@
 html {
-  background: white;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 h1 {
@@ -36,7 +36,8 @@ h1 {
     margin: -12px 0px 0px 0px;
 }
 
-.temp, .feels {
+.temp,
+.feels {
     font-size: 18px;
     font-weight: bold;
     margin: 1px 0px;
@@ -44,8 +45,4 @@ h1 {
 
 #map {
     height: 100%;
-  }
-
-
-
-
+}
