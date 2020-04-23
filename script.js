@@ -12,12 +12,46 @@ function upperCase(str) {
 //Converting the date string into day and time does not currently work.  Need to figure out how to get everyday listed in the loop.
 function weekDay(str) {
     //    could do a manual if then part to return day of week
+    
+    var convertDay = function(day){
+        if (day === 0){
+            return 'Sunday'
+        } else if (day === 1){
+            return 'Monday'
+        } else if (day === 2){
+            return 'Tuesday'
+        } else if (day === 3){
+            return 'Wednesday'
+        } else if (day === 4){
+            return 'Thursday'
+        } else if (day === 5){
+            return 'Friday'
+        } else {
+            return 'Saturday'
+        }
+    } 
 
-    str = new Date();
+    var convertTime = function(time){
+        if(time > 0 && time < 12){
+            return time + ' a.m.';
+        } else if (time > 12 && time < 24) {
+            var pmTime = time - 12;
+            return pmTime + ' p.m.';
+        } else {
+            return '12 a.m';
+        }
+    }
+    var eachDay = new Date(str);
+//    console.log(eachDay);
 
-    var date = str.toDateString();
-
-    return str;
+    
+    var day = convertDay(eachDay.getDay());
+//    console.log(day);
+    
+    var time = convertTime(eachDay.getHours());
+//    console.log(time);
+    
+    return day + ' ' + time;
 }
 
 function createDayNode(date, icon, upperDesc, temp, feelLike) {
@@ -34,22 +68,27 @@ function createDayNode(date, icon, upperDesc, temp, feelLike) {
     
     var theDay = document.createElement('p');
     theDay.appendChild(addDate);
+    theDay.setAttribute("class", "day");
     dayBlock.appendChild(theDay);
     
     var addIconElement = document.createElement('img');
     addIconElement.src = icon;
+    addIconElement.setAttribute("class", "icon");
     dayBlock.appendChild(addIconElement);
     
     var theDesc = document.createElement('p');
     theDesc.appendChild(addUpper);
+    theDesc.setAttribute("class", "weather");
     dayBlock.appendChild(theDesc);
     
     var theTemp = document.createElement('p');
     theTemp.appendChild(addTemp);
+    theTemp.setAttribute("class", "temp");
     dayBlock.appendChild(theTemp);
     
     var theFeel = document.createElement('p');
     theFeel.appendChild(addFeel);
+    theFeel.setAttribute("class", "feels");
     dayBlock.appendChild(theFeel);  
        
 }
@@ -81,14 +120,14 @@ $.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=30517,us&units=imp
 
 });
 
-//Pulling and writing the 5-day forecast
+//Pulling and writing the 5-day forecast (EVERY 3 HOURS)
 $.getJSON("http://api.openweathermap.org/data/2.5/forecast?zip=30517,us&units=imperial&appid=f299fe1664f7a29b0d3100ebe150b2a2", function (data) {
 
     console.log(data);
 
     for (var i = 0; i < data.list.length; i++) {
 
-        var date = data.list[i].dt_txt;
+        var date = weekDay(data.list[i].dt_txt);
 
         var icon = "http://api.openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png";
 

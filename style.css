@@ -46,3 +46,9 @@ h1 {
 #map {
     height: 100%;
 }
+
+.day {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 2px 0; 
+}
