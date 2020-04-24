@@ -1,5 +1,5 @@
 html {
-    background: white;
+    background-color: lightgray;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -36,8 +36,8 @@ h1 {
     margin: -12px 0px 0px 0px;
 }
 
-.temp,
-.feels {
+.currentTemp,
+.currentFeels {
     font-size: 18px;
     font-weight: bold;
     margin: 1px 0px;
@@ -54,11 +54,12 @@ h1 {
 }
 
 ul {
-  margin: 0px;
-  padding: 0px;
+    margin: 0;
+    padding: 0px;
 }
 
 ul li {
+    border-radius: 25px;
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 10px;
@@ -69,8 +70,54 @@ ul li {
     margin: 3px 0px 0px 0px;
     font-family: sans-serif;
     font-weight: normal;
+    background-color: slategray;
+    width: 400px;
+    height: 200px;
 }
 
 ul li:hover {
-  background: #ddd;
+    background: #ddd;
+}
+
+ul li .day {
+    background-color: orangered;
+    width: 95%;
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+ul li .icon {
+    display: block;
+    margin: auto;
+    width: 18%;
+
+}
+
+ul li .weather {
+    background-color: orangered;
+    width: 80%;
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+ul li .temp,
+.feels {
+    margin: 5px 5px 0 5px;
+    display: grid;
+    background-color: white;
+    width: 45%;
+    border-radius: 20px;
+    text-align: center;
+}
+
+ul li .temp {
+    float: left;
+}
+
+ul li .feels {
+    float: right;
 }

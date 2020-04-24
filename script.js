@@ -9,7 +9,7 @@ function upperCase(str) {
     return str.join(" ");
 
 }
-//Converting the date string into day and time does not currently work.  Need to figure out how to get everyday listed in the loop.
+//Creates the day and time string
 function weekDay(str) {
     //    could do a manual if then part to return day of week
     
@@ -32,11 +32,15 @@ function weekDay(str) {
     } 
 
     var convertTime = function(time){
-        if(time > 0 && time < 12){
+        if(time > 0 && time < 11){
             return time + " a.m.";
-        } else if (time > 12 && time < 24) {
+        } else if (time >= 12 && time < 24) {
+            if((time - 12) === 0){
+                return "12 p.m."
+            } else {
             var pmTime = time - 12;
             return pmTime + " p.m.";
+            }
         } else {
             return "12 a.m";
         }
@@ -62,9 +66,9 @@ function createDayNode(date, icon, upperDesc, temp, feelLike) {
 //      console.log(addDate);   
     var addUpper = document.createTextNode(upperDesc);
 //      console.log(addUpper);
-    var addTemp = document.createTextNode(temp);
+    var addTemp = document.createTextNode("Temp: " + temp);
 //      console.log(addTemp);
-    var addFeel = document.createTextNode(feelLike);
+    var addFeel = document.createTextNode("Feels Like: " + feelLike);
 //      console.log(addFeel);
     
     var theDay = document.createElement("p");
@@ -124,8 +128,8 @@ $.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=30517,us&units=imp
     $(".city").append("Location: " + city);
     $(".icon").attr("src", icon);
     $(".weather").append(upperDesc);
-    $(".temp").append("Current Temp: " + temp);
-    $(".feels").append("Feels Like: " + feelLike);
+    $(".currentTemp").append("Current Temp: " + temp);
+    $(".currentFeels").append("Feels Like: " + feelLike);
     
 
 });
@@ -156,7 +160,7 @@ $.getJSON("http://api.openweathermap.org/data/2.5/forecast?zip=30517,us&units=im
            console.log("Temp: " + temp);
            console.log("Feels Like: " + feelLike);*/
 
-        
+        //Rewrite code to send to organizeDay function, then in organizeDay call createDayNode 
         createDayNode(date,icon,upperDesc,temp,feelLike);
 
     };
