@@ -13,6 +13,7 @@ function upperCase(str) {
 function weekDay(str) {
     //    could do a manual if then part to return day of week
     
+    //Day number to name
     var convertDay = function(day){
         if (day === 0){
             return "Sunday"
@@ -30,7 +31,8 @@ function weekDay(str) {
             return "Saturday"
         }
     } 
-
+    
+    //Hours 0 - 23 converted to am/pm 
     var convertTime = function(time){
         if(time > 0 && time < 11){
             return time + " a.m.";
@@ -45,6 +47,37 @@ function weekDay(str) {
             return "12 a.m";
         }
     }
+    
+    //Month number to name
+    var convertMonth = function(month){
+        if(month === 0){
+            return "January";
+        } else if (month === 1){
+            return "February";
+        } else if (month === 2){
+            return "March";
+        } else if (month === 3){
+            return "April";
+        } else if (month === 4){
+            return "May";
+        } else if (month === 5){
+            return "June";
+        } else if (month === 6){
+            return "July";
+        } else if (month === 7){
+            return "August";
+        } else if (month === 8){
+            return "September";
+        } else if (month === 9){
+            return "October";
+        } else if (month === 10){
+            return "November";
+        } else {
+            return "December"
+        }
+    }
+    
+    
     var eachDay = new Date(str);
 //    console.log(eachDay);
 
@@ -52,10 +85,17 @@ function weekDay(str) {
     var day = convertDay(eachDay.getDay());
 //    console.log(day);
     
+    var date = eachDay.getDate();
+//    console.log(date);
+    
+    var month = convertMonth(eachDay.getMonth());
+//    console.log(month);
+    
+    
     var time = convertTime(eachDay.getHours());
 //    console.log(time);
     
-    return day + " " + time;
+    return day + "," + " " + month + " " + date + " | " + time;
 }
 
 //Creates each day block li
@@ -99,8 +139,8 @@ function createDayNode(date, icon, upperDesc, temp, feelLike) {
     var newLi = document.createElement("li");
     newLi.setAttribute("class", "extendedForecast");
     newLi.appendChild(theDay);
-    newLi.appendChild(addIconElement);
     newLi.appendChild(theDesc);
+    newLi.appendChild(addIconElement);
     newLi.appendChild(theTemp);
     newLi.appendChild(theFeel);
     dayBlock.appendChild(newLi);  
