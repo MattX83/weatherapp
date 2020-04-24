@@ -54,8 +54,9 @@ function weekDay(str) {
     return day + " " + time;
 }
 
+//Creates each day block li
 function createDayNode(date, icon, upperDesc, temp, feelLike) {
-    var dayBlock = document.getElementById("forecast");
+    var dayBlock = document.getElementById("fiveDay");
     
     var addDate = document.createTextNode(date);
 //      console.log(addDate);   
@@ -91,14 +92,14 @@ function createDayNode(date, icon, upperDesc, temp, feelLike) {
     theFeel.setAttribute("class", "feels");
  
     
-    var newDiv = document.createElement("div");
-    newDiv.setAttribute("class", "extendedForecast");
-    newDiv.appendChild(theDay);
-    newDiv.appendChild(addIconElement);
-    newDiv.appendChild(theDesc);
-    newDiv.appendChild(theTemp);
-    newDiv.appendChild(theFeel);
-    dayBlock.appendChild(newDiv);  
+    var newLi = document.createElement("li");
+    newLi.setAttribute("class", "extendedForecast");
+    newLi.appendChild(theDay);
+    newLi.appendChild(addIconElement);
+    newLi.appendChild(theDesc);
+    newLi.appendChild(theTemp);
+    newLi.appendChild(theFeel);
+    dayBlock.appendChild(newLi);  
        
 }
 
