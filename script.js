@@ -12,130 +12,143 @@ function upperCase(str) {
 //Creates the day and time string
 function weekDay(str) {
     //    could do a manual if then part to return day of week
-    
+
     //Day number to name
-    var convertDay = function(day){
-        if (day === 0){
+    var convertDay = function (day) {
+        if (day === 0) {
             return "Sunday"
-        } else if (day === 1){
+        } else if (day === 1) {
             return "Monday"
-        } else if (day === 2){
+        } else if (day === 2) {
             return "Tuesday"
-        } else if (day === 3){
+        } else if (day === 3) {
             return "Wednesday"
-        } else if (day === 4){
+        } else if (day === 4) {
             return "Thursday"
-        } else if (day === 5){
+        } else if (day === 5) {
             return "Friday"
         } else {
             return "Saturday"
         }
-    } 
-    
+    }
+
     //Hours 0 - 23 converted to am/pm 
-    var convertTime = function(time){
-        if(time > 0 && time < 11){
+    var convertTime = function (time) {
+        if (time > 0 && time < 11) {
             return time + " a.m.";
         } else if (time >= 12 && time < 24) {
-            if((time - 12) === 0){
+            if ((time - 12) === 0) {
                 return "12 p.m."
             } else {
-            var pmTime = time - 12;
-            return pmTime + " p.m.";
+                var pmTime = time - 12;
+                return pmTime + " p.m.";
             }
         } else {
             return "12 a.m";
         }
     }
-    
+
     //Month number to name
-    var convertMonth = function(month){
-        if(month === 0){
+    var convertMonth = function (month) {
+        if (month === 0) {
             return "January";
-        } else if (month === 1){
+        } else if (month === 1) {
             return "February";
-        } else if (month === 2){
+        } else if (month === 2) {
             return "March";
-        } else if (month === 3){
+        } else if (month === 3) {
             return "April";
-        } else if (month === 4){
+        } else if (month === 4) {
             return "May";
-        } else if (month === 5){
+        } else if (month === 5) {
             return "June";
-        } else if (month === 6){
+        } else if (month === 6) {
             return "July";
-        } else if (month === 7){
+        } else if (month === 7) {
             return "August";
-        } else if (month === 8){
+        } else if (month === 8) {
             return "September";
-        } else if (month === 9){
+        } else if (month === 9) {
             return "October";
-        } else if (month === 10){
+        } else if (month === 10) {
             return "November";
         } else {
             return "December"
         }
     }
-    
-    
-    var eachDay = new Date(str);
-//    console.log(eachDay);
 
-    
+
+    var eachDay = new Date(str);
+    //    console.log(eachDay);
+
+
     var day = convertDay(eachDay.getDay());
-//    console.log(day);
-    
+    //    console.log(day);
+
     var date = eachDay.getDate();
-//    console.log(date);
-    
+    //    console.log(date);
+
     var month = convertMonth(eachDay.getMonth());
-//    console.log(month);
-    
-    
+    //    console.log(month);
+
+
     var time = convertTime(eachDay.getHours());
-//    console.log(time);
-    
+    //    console.log(time);
+
     return day + "," + " " + month + " " + date + " | " + time;
 }
 
 //Creates each day block li
 function createDayNode(date, icon, upperDesc, temp, feelLike) {
-    var dayBlock = document.getElementById("fiveDay");
-    
+
+
+    //var dayBlock = document.getElementById("fiveDay");
+
+    var dayBlockOne = document.getElementById("one");
+    var dayBlockTwo = document.getElementById("two");
+    var dayBlockThree = document.getElementById("three");
+    var dayBlockFour = document.getElementById("four");
+    var dayBlockFive = document.getElementById("five");
+
     var addDate = document.createTextNode(date);
-//      console.log(addDate);   
+    //      console.log(addDate);   
     var addUpper = document.createTextNode(upperDesc);
-//      console.log(addUpper);
+    //      console.log(addUpper);
     var addTemp = document.createTextNode("Temp: " + temp);
-//      console.log(addTemp);
+    //      console.log(addTemp);
     var addFeel = document.createTextNode("Feels Like: " + feelLike);
-//      console.log(addFeel);
-    
+    //      console.log(addFeel);
+
+
     var theDay = document.createElement("p");
     theDay.appendChild(addDate);
     theDay.setAttribute("class", "day");
 
-    
+
     var addIconElement = document.createElement("img");
     addIconElement.src = icon;
     addIconElement.setAttribute("class", "icon");
 
-    
+
     var theDesc = document.createElement("p");
     theDesc.appendChild(addUpper);
     theDesc.setAttribute("class", "weather");
 
-    
+
     var theTemp = document.createElement("p");
     theTemp.appendChild(addTemp);
     theTemp.setAttribute("class", "temp");
 
-    
+
     var theFeel = document.createElement("p");
     theFeel.appendChild(addFeel);
     theFeel.setAttribute("class", "feels");
- 
-    
+
+    //Write this block to insert hour blocks under each day div
+    if (date === "Saturday") {
+
+    }
+
     var newLi = document.createElement("li");
     newLi.setAttribute("class", "extendedForecast");
     newLi.appendChild(theDay);
@@ -143,8 +156,7 @@ function createDayNode(date, icon, upperDesc, temp, feelLike) {
     newLi.appendChild(addIconElement);
     newLi.appendChild(theTemp);
     newLi.appendChild(theFeel);
-    dayBlock.appendChild(newLi);  
-       
+    dayBlockOne.appendChild(newLi);
 }
 
 
@@ -170,7 +182,7 @@ $.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=30517,us&units=imp
     $(".weather").append(upperDesc);
     $(".currentTemp").append("Current Temp: " + temp);
     $(".currentFeels").append("Feels Like: " + feelLike);
-    
+
 
 });
 
@@ -200,8 +212,8 @@ $.getJSON("http://api.openweathermap.org/data/2.5/forecast?zip=30517,us&units=im
            console.log("Temp: " + temp);
            console.log("Feels Like: " + feelLike);*/
 
-        //Rewrite code to send to organizeDay function, then in organizeDay call createDayNode 
-        createDayNode(date,icon,upperDesc,temp,feelLike);
+        //Potentially Rewrite code to send to organizeDay function, then in organizeDay call createDayNode 
+        createDayNode(date, icon, upperDesc, temp, feelLike);
 
     };
 })
