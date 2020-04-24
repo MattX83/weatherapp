@@ -15,30 +15,30 @@ function weekDay(str) {
     
     var convertDay = function(day){
         if (day === 0){
-            return 'Sunday'
+            return "Sunday"
         } else if (day === 1){
-            return 'Monday'
+            return "Monday"
         } else if (day === 2){
-            return 'Tuesday'
+            return "Tuesday"
         } else if (day === 3){
-            return 'Wednesday'
+            return "Wednesday"
         } else if (day === 4){
-            return 'Thursday'
+            return "Thursday"
         } else if (day === 5){
-            return 'Friday'
+            return "Friday"
         } else {
-            return 'Saturday'
+            return "Saturday"
         }
     } 
 
     var convertTime = function(time){
         if(time > 0 && time < 12){
-            return time + ' a.m.';
+            return time + " a.m.";
         } else if (time > 12 && time < 24) {
             var pmTime = time - 12;
-            return pmTime + ' p.m.';
+            return pmTime + " p.m.";
         } else {
-            return '12 a.m';
+            return "12 a.m";
         }
     }
     var eachDay = new Date(str);
@@ -51,11 +51,11 @@ function weekDay(str) {
     var time = convertTime(eachDay.getHours());
 //    console.log(time);
     
-    return day + ' ' + time;
+    return day + " " + time;
 }
 
 function createDayNode(date, icon, upperDesc, temp, feelLike) {
-    var dayBlock = document.getElementById('forecast');
+    var dayBlock = document.getElementById("forecast");
     
     var addDate = document.createTextNode(date);
 //      console.log(addDate);   
@@ -66,35 +66,44 @@ function createDayNode(date, icon, upperDesc, temp, feelLike) {
     var addFeel = document.createTextNode(feelLike);
 //      console.log(addFeel);
     
-    var theDay = document.createElement('p');
+    var theDay = document.createElement("p");
     theDay.appendChild(addDate);
     theDay.setAttribute("class", "day");
-    dayBlock.appendChild(theDay);
+
     
-    var addIconElement = document.createElement('img');
+    var addIconElement = document.createElement("img");
     addIconElement.src = icon;
     addIconElement.setAttribute("class", "icon");
-    dayBlock.appendChild(addIconElement);
+
     
-    var theDesc = document.createElement('p');
+    var theDesc = document.createElement("p");
     theDesc.appendChild(addUpper);
     theDesc.setAttribute("class", "weather");
-    dayBlock.appendChild(theDesc);
+
     
-    var theTemp = document.createElement('p');
+    var theTemp = document.createElement("p");
     theTemp.appendChild(addTemp);
     theTemp.setAttribute("class", "temp");
-    dayBlock.appendChild(theTemp);
+
     
-    var theFeel = document.createElement('p');
+    var theFeel = document.createElement("p");
     theFeel.appendChild(addFeel);
     theFeel.setAttribute("class", "feels");
-    dayBlock.appendChild(theFeel);  
+ 
+    
+    var newDiv = document.createElement("div");
+    newDiv.setAttribute("class", "extendedForecast");
+    newDiv.appendChild(theDay);
+    newDiv.appendChild(addIconElement);
+    newDiv.appendChild(theDesc);
+    newDiv.appendChild(theTemp);
+    newDiv.appendChild(theFeel);
+    dayBlock.appendChild(newDiv);  
        
 }
 
 
-//Pulling weather data from openweathermap and setting cuurent weather block.
+//Current weather block.
 $.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=30517,us&units=imperial&appid=f299fe1664f7a29b0d3100ebe150b2a2", function (data) {
     console.log(data);
 
@@ -120,7 +129,7 @@ $.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=30517,us&units=imp
 
 });
 
-//Pulling and writing the 5-day forecast (EVERY 3 HOURS)
+//Pulling and writing the 5-day forecast (EVERY 3 HOURS BLOCKS)
 $.getJSON("http://api.openweathermap.org/data/2.5/forecast?zip=30517,us&units=imperial&appid=f299fe1664f7a29b0d3100ebe150b2a2", function (data) {
 
     console.log(data);
