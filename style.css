@@ -52,9 +52,6 @@ h1 {
     margin: 1px 0px;
 }
 
-#map {
-    height: 100%;
-}
 
 .day {
     font-size: 20px;
@@ -62,12 +59,10 @@ h1 {
     margin: 2px 0;
 }
 
-ul {
-    margin: 0;
-    padding: 0px;
-}
+/*DIV content inside Button*/
 
-ul li {
+div .dropdown-content {
+    
     border-radius: 10px;
     cursor: pointer;
     position: relative;
@@ -84,11 +79,11 @@ ul li {
     height: 90px;
 }
 
-ul li:hover {
-    background: lightgray;
+div .dropdown-content:hover {
+    background: black;
 }
 
-ul li .day {
+div .dropdown-content .day {
     background-color: orangered;
     width: 95%;
     height: 30px;
@@ -100,13 +95,13 @@ ul li .day {
     color: white;
 }
 
-ul li .icon {
+div .dropdown-content .icon {
     float: right;
     margin: -10px 10px 0 0;
     width: 15%;
 }
 
-ul li .weather {
+div .dropdown-content .weather {
     background-color: lightgray;
     width: 95%;
     height: 20px;
@@ -119,8 +114,8 @@ ul li .weather {
     color: orangered;
 }
 
-ul li .temp,
-.feels {
+div .dropdown-content .high,
+.low {
     display: grid;
     background-color: ;
     width: 130px;
@@ -131,12 +126,27 @@ ul li .temp,
     color: white;
 }
 
-ul li .temp {
+div .dropdown-content .high {
     float: left;
     margin: 10px 5px 0 10px;
 }
 
-ul li .feels {
+div .dropdown-content .low {
     float: left;
     margin: 10px 0px 0 0px;
 }
+
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: lightgray;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+ 
+  display: inline-block;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}

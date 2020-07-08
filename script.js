@@ -83,7 +83,7 @@ function weekDay(str) {
 
 
     var day = convertDay(eachDay.getDay());
-    //    console.log(day);
+    //        console.log(day);
 
     var date = eachDay.getDate();
     //    console.log(date);
@@ -98,31 +98,52 @@ function weekDay(str) {
     return day + "," + " " + month + " " + date + " | " + time;
 }
 
-//Creates each day block li
-function createDayNode(date, icon, upperDesc, temp, feelLike) {
+/*gets day for the button innerHTML (This code should be refactored with the weekDay function and turn it into an object with methods.  That way it can handle any date or time need accross the app) */
 
+function day(str) {
+    var convertDay = function (day) {
+        if (day === 0) {
+            return "Sunday"
+        } else if (day === 1) {
+            return "Monday"
+        } else if (day === 2) {
+            return "Tuesday"
+        } else if (day === 3) {
+            return "Wednesday"
+        } else if (day === 4) {
+            return "Thursday"
+        } else if (day === 5) {
+            return "Friday"
+        } else {
+            return "Saturday"
+        }
+    }
+    var eachDay = new Date(str);
+    var day = convertDay(eachDay.getDay());
 
-    //var dayBlock = document.getElementById("fiveDay");
+    return day;
+}
 
-    var dayBlockOne = document.getElementById("one");
-    var dayBlockTwo = document.getElementById("two");
-    var dayBlockThree = document.getElementById("three");
-    var dayBlockFour = document.getElementById("four");
-    var dayBlockFive = document.getElementById("five");
+//Creates each day block div inside button
+function createDayNode(date, icon, upperDesc, highTemp, lowTemp) {
+    var dayBlock = document.getElementById("forecast");
 
     var addDate = document.createTextNode(date);
     //      console.log(addDate);   
+    //var addDay = document.createTextNode(theDay);
+
     var addUpper = document.createTextNode(upperDesc);
     //      console.log(addUpper);
-    var addTemp = document.createTextNode("Temp: " + temp);
+    var addHigh = document.createTextNode("High: " + highTemp);
     //      console.log(addTemp);
-    var addFeel = document.createTextNode("Feels Like: " + feelLike);
-    //      console.log(addFeel);
+    var addLow = document.createTextNode("Low: " + lowTemp);
+    //      console.log(addLow);
 
 
-    var theDay = document.createElement("p");
-    theDay.appendChild(addDate);
-    theDay.setAttribute("class", "day");
+
+    var theDate = document.createElement("p");
+    theDate.appendChild(addDate);
+    theDate.setAttribute("class", "day");
 
 
     var addIconElement = document.createElement("img");
@@ -135,29 +156,49 @@ function createDayNode(date, icon, upperDesc, temp, feelLike) {
     theDesc.setAttribute("class", "weather");
 
 
-    var theTemp = document.createElement("p");
-    theTemp.appendChild(addTemp);
-    theTemp.setAttribute("class", "temp");
+    var theHigh = document.createElement("p");
+    theHigh.appendChild(addHigh);
+    theHigh.setAttribute("class", "high");
 
 
-    var theFeel = document.createElement("p");
-    theFeel.appendChild(addFeel);
-    theFeel.setAttribute("class", "feels");
+    var theLow = document.createElement("p");
+    theLow.appendChild(addLow);
+    theLow.setAttribute("class", "low");
 
-    //Write this block to insert hour blocks under each day div
-    if (date === "Saturday") {
 
-    }
+    var dropDiv = document.createElement("DIV");
+    dropDiv.setAttribute("class", "dropdown");
+    dropDiv.setAttribute("class", "dropdown-content");
+    dropDiv.appendChild(theDate);
+    dropDiv.appendChild(theDesc);
+    dropDiv.appendChild(addIconElement);
+    dropDiv.appendChild(theHigh);
+    dropDiv.appendChild(theLow);
+    
+    var newDiv = document.createElement("DIV");
+    newDiv.setAttribute("id", "myDropdown");
+    
 
-    var newLi = document.createElement("li");
-    newLi.setAttribute("class", "extendedForecast");
-    newLi.appendChild(theDay);
-    newLi.appendChild(theDesc);
-    newLi.appendChild(addIconElement);
-    newLi.appendChild(theTemp);
-    newLi.appendChild(theFeel);
-    dayBlockOne.appendChild(newLi);
+    dayBlock.appendChild(dropDiv);
+
+
+
+    //    var newLi = document.createElement("li");
+    //    newLi.setAttribute("class", "panel");
+    //    newLi.appendChild(theDay);
+    //    newLi.appendChild(theDesc);
+    //    newLi.appendChild(addIconElement);
+    //    newLi.appendChild(theTemp);
+    //    newLi.appendChild(theFeel);
+    //    dayBlock.appendChild(newLi);
+
+
 }
+
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+
 
 
 //Current weather block.
@@ -187,23 +228,25 @@ $.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=30517,us&units=imp
 });
 
 //Pulling and writing the 5-day forecast (EVERY 3 HOURS BLOCKS)
-$.getJSON("http://api.openweathermap.org/data/2.5/forecast?zip=30517,us&units=imperial&appid=f299fe1664f7a29b0d3100ebe150b2a2", function (data) {
+//$.getJSON("http://api.openweathermap.org/data/2.5/forecast?zip=30517,us&units=imperial&appid=f299fe1664f7a29b0d3100ebe150b2a2", function (data) {
 
-    console.log(data);
-
-    for (var i = 0; i < data.list.length; i++) {
-
-        var date = weekDay(data.list[i].dt_txt);
-
-        var icon = "http://api.openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png";
-
-        var description = data.list[i].weather[0].description;
-
-        var upperDesc = upperCase(description);
-
-        var temp = Math.round(data.list[i].main.temp) + "\xB0";
-
-        var feelLike = Math.round(data.list[i].main.feels_like) + "\xB0";
+//    console.log(data);
+//
+//    for (var i = 0; i < data.list.length; i++) {
+//
+//        var date = weekDay(data.list[i].dt_txt);
+//
+//        var theDay = day(data.list[i].dt_txt);
+//
+//        var icon = "http://api.openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png";
+//
+//        var description = data.list[i].weather[0].description;
+//
+//        var upperDesc = upperCase(description);
+//
+//        var temp = Math.round(data.list[i].main.temp) + "\xB0";
+//
+//        var feelLike = Math.round(data.list[i].main.feels_like) + "\xB0";
 
 
         /*   console.log(date); 
@@ -212,8 +255,39 @@ $.getJSON("http://api.openweathermap.org/data/2.5/forecast?zip=30517,us&units=im
            console.log("Temp: " + temp);
            console.log("Feels Like: " + feelLike);*/
 
-        //Potentially Rewrite code to send to organizeDay function, then in organizeDay call createDayNode 
-        createDayNode(date, icon, upperDesc, temp, feelLike);
+        //createDayNode(date, theDay, icon, upperDesc, temp, feelLike);
 
+//    };
+//})
+
+$.getJSON("https://api.openweathermap.org/data/2.5/onecall?lat=34.111046&lon=-83.815783&units=imperial&exclude=minutely,hourly&appid=f299fe1664f7a29b0d3100ebe150b2a2", function 
+(data){
+    console.log(data);
+    //Looping to get only 5 days of forecast
+    for(var i = 1; i < data.daily.length - 2; i++) {
+        
+        var date = new Date(data.daily[i].dt * 1000).toDateString();
+        console.log(date);
+        
+        var icon = "http://api.openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
+        console.log(icon);
+        
+        var description = data.daily[i].weather[0].description;
+        //console.log(description);
+        
+        var upperDesc = upperCase(description);
+        console.log(upperDesc);
+        
+        var highTemp = Math.round(data.daily[i].temp.max) + "\xB0";
+        console.log(highTemp);
+        
+        var lowTemp = Math.round(data.daily[i].temp.min) + "\xB0";
+        console.log(lowTemp);
+        
+        createDayNode(date, icon, upperDesc, highTemp, lowTemp);
     };
 })
+
+//This link will show the current percipitation map
+
+//https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=34.111046&lon=-83.815783&zoom=10
