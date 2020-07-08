@@ -2,35 +2,37 @@
 <html lang="">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather App</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+</script>
 
 </head>
 
 <body>
 
-    <div class="weather-container">
-        <p class="city"></p>
-        <p class="currentTemp"></p>
-        <p class="currentFeels"></p>
-        <img class="icon">
-        <p class="weather"></p>
-        <br><br>
-    </div>
+	<div class="weather-container">
+		<p class="city"></p>
+		<p class="currentTemp"></p>
+		<p class="currentFeels"></p>
+		<img class="icon">
+		<p class="weather"></p>
+		<br><br>
+	</div>
 
 
 
-    <div id="forecast">
-    </div>
+	<div id="forecast"><span id="map"></span></div>
 
-    <div id="map">
-        <img src="https://tile.openweathermap.org/map/precipitation_new/2/2/2.png?appid=f299fe1664f7a29b0d3100ebe150b2a2">
-    </div>
+	
+    
 
-    <script src="script.js"></script>
+	
+	<script src="script.js"></script>
 </body>
 
 </html>
