@@ -282,7 +282,7 @@ $.getJSON("https://api.openweathermap.org/data/2.5/onecall?lat=34.111046&lon=-83
 
 		var lowTemp = Math.round(data.daily[i].temp.min) + "\xB0";
 		//		console.log(lowTemp);
-
+				
 		createDayNode(date, icon, upperDesc, highTemp, lowTemp);
 	};
 })
@@ -290,16 +290,65 @@ $.getJSON("https://api.openweathermap.org/data/2.5/onecall?lat=34.111046&lon=-83
 //This function will show the current percipitation map
 
 // Initialize and add the map
+
+
+
+const CC_API_KEY = 'K7tbSHYcG4kYF4dUX3QqTUNWmI9mNR5i';
+const CC_DATA_FIELD = 'precipitation';
+const CC_TIMESTAMP = 'now'; // or any ISO 8601 timestamp
+
 function initMap() {
-  // The location of Uluru
-  var uluru = {lat: 34.111046,
-			lng: -83.815783};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 10, center: uluru});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: uluru, map: map});
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 7,
+    center: {lat: 34.111046, lng: -83.815783}
+  });
+
+  var imageMapType = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      if (zoom > 12) {
+        return null;
+      }
+
+      return `https://api.climacell.co/v3/weather/layers/${CC_DATA_FIELD}/${CC_TIMESTAMP}/7/0/1.png?apikey=${CC_API_KEY}`;
+    },
+    tileSize: new google.maps.Size(256, 256)
+  });
+
+  map.overlayMapTypes.push(imageMapType);
 }
 
 
-var radarLayer = "https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=34.111046&lon=-83.815783&zoom=10";
+//function initMap() {
+//	// The location of Uluru
+//	var uluru = {
+//		lat: 34.111046,
+//		lng: -83.815783
+//	};
+//	// The map, centered at Uluru
+//	var map = new google.maps.Map(
+//		document.getElementById('map'), {
+//			zoom: 5,
+//			center: uluru
+//		});
+//	// The marker, positioned at Uluru
+//	var marker = new google.maps.Marker({
+//		position: uluru,
+//		map: map
+//	});
+//}
+
+//window.onload = (event) => {
+////	var radarLayerOne = "https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=34.111046&lon=-83.815783&zoom=10";
+//	
+//	var radarLayerTwo = "https://tile.openweathermap.org/map/precipitation_new/2/2/2.png?appid=f299fe1664f7a29b0d3100ebe150b2a2"
+//	
+//	var layer = document.getElementById('layer');
+//	
+//	$("#layer").attr("src", radarLayerTwo);
+//}
+
+	
+	
+    
+
+

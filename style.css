@@ -1,5 +1,5 @@
 html {
-	background-color: lightgray;
+	background-color: #262626;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -75,13 +75,15 @@ div .dropdown-content {
 	font-family: sans-serif;
 	font-weight: normal;
 	background-color: slategray;
-	width: 20%;
-	height: 90px;
+	width: 25%;
+	height: 100px;
 }
 
+/*
 div .dropdown-content:hover {
 	background: black;
 }
+*/
 
 div .dropdown-content .day {
 	background-color: orangered;
@@ -97,8 +99,8 @@ div .dropdown-content .day {
 
 div .dropdown-content .icon {
 	float: right;
-	margin: -10px 10px 0 0;
-	width: 15%;
+	margin: -5px 10px 0 0;
+	width: 20px%;
 }
 
 div .dropdown-content .weather {
@@ -139,8 +141,13 @@ div .dropdown-content .low {
 /* Set the size of the div element that contains the map */
 #map {
   float: right;
-  height: 604px;  /* The height is 400 pixels */
-  width: 70%;  /* The width is the width of the web page */
+  height: 651px;  /* The height is 400 pixels */
+  width: 72%;  /* The width is the width of the web page */
   margin: 0 0.2% 0 0;
   border-radius: 10px;
- }
+ 
+ } 
+/*Positioning the precip layer over the map*/
+
+
+
