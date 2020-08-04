@@ -6,17 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Weather App</title>
 	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzM3rxTmAkn_MQp3Yu0vEkUwg3uPVM6e0&callback=initMap">
-	</script>
-
-
 
 </head>
 
 <body>
 
-	<div class="weather-container">
+<!--	<div class="climacell-widget" data-apikey="K7tbSHYcG4kYF4dUX3QqTUNWmI9mNR5i" data-type="nowcast" data-location-name="Braselton, GA, USA" data-location-lon="-83.7626729" data-location-lat="34.1092735" data-size-mode="large" data-font-color="#000" data-background-color="#fff" data-font-family="verdana" data-weather-params="temp:F,precipitation:mm/hr,wind_speed:mph,humidity:%,cloud_cover:%" data-precipitation-timeline="true" data-allow-users-enter-address="true"></div>-->
+
+	<div class="current-weather-container">
 		<p class="city"></p>
 		<p class="currentTemp"></p>
 		<p class="currentFeels"></p>
@@ -27,11 +24,16 @@
 
 
 
+
 	<div id="forecast"><span id="map"></span></div>
 
-	
-	
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzM3rxTmAkn_MQp3Yu0vEkUwg3uPVM6e0&callback=initMap&libraries=&v=weekly" defer></script>
 
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+<!--	<script type="text/javascript" src="https://widgets-viewer.climacell.co/v1/sdk.js"></script>-->
 	<script src="script.js"></script>
-</body></html>
+</body>
+
+</html>

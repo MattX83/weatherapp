@@ -1,17 +1,22 @@
 html {
-	background-color: #262626;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
 
+body {
+	
+}
+
 h1 {
 	text-align: center
 }
 
-.weather-container {
-	background: url(cloudsnsun.jpg) no-repeat;
+.current-weather-container {
+	background-image: url(cloudsnsun.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -26,7 +31,6 @@ h1 {
 	height: 140px;
 	border-radius: 10px;
 }
-
 
 .city {
 	font-size: 25px;
@@ -86,7 +90,7 @@ div .dropdown-content:hover {
 */
 
 div .dropdown-content .day {
-	background-color: orangered;
+	background-color: red;
 	width: 95%;
 	height: 30px;
 	margin: auto;
@@ -113,7 +117,7 @@ div .dropdown-content .weather {
 	font-weight: bolder;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	color: orangered;
+	color: red;
 }
 
 div .dropdown-content .high,
@@ -141,13 +145,15 @@ div .dropdown-content .low {
 /* Set the size of the div element that contains the map */
 #map {
   float: right;
-  height: 651px;  /* The height is 400 pixels */
-  width: 72%;  /* The width is the width of the web page */
+  height: 652px;   
+  width: 71%;   
+/*	height: 256px;   */
+/*  width: 256px;   */
   margin: 0 0.2% 0 0;
   border-radius: 10px;
  
  } 
-/*Positioning the precip layer over the map*/
+/*Positioning the precip layer over the map
 
 
 
