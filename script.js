@@ -193,6 +193,7 @@ function createDayNode(date, icon, upperDesc, highTemp, lowTemp) {
 
 }
 
+
 //Current weather block.
 $.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=30517,us&units=imperial&appid=f299fe1664f7a29b0d3100ebe150b2a2", function (data) {
 	console.log(data);
@@ -280,30 +281,30 @@ $.getJSON("https://api.openweathermap.org/data/2.5/onecall?lat=34.111046&lon=-83
 	};
 })
 
+$.getJSON("https://api.rainviewer.com/public/maps.json", function (data) {
+	var nowPrecip = data[12];
+	initMap(nowPrecip);
+})
 
+//Climacell api key for widget if needed.
 //const CC_API_KEY = 'K7tbSHYcG4kYF4dUX3QqTUNWmI9mNR5i';
 //const CC_DATA_FIELD = 'precipitation';
 //const CC_TIMESTAMP = 'now'; // or any ISO 8601 timestamp
 
 // Initialize and add the map
-function initMap() {
+function initMap(nowPrecip) {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 6,
+		zoom: 8,
 		center: {
 			lat: 34.111046,
 			lng: -83.815783
 		},
-		disableDefaultUI: true
+		//		disableDefaultUI: true
 	});
 
-	//	map.overlayMapTypes.insertAt(
-	//    0,
-	//    new CoordMapType(new google.maps.Size(256, 256))
-	//  );
-
 	var imageMapType = new google.maps.ImageMapType({
-		getTileUrl: function (coord, zoom) {
-			var radarLayer = "https://tilecache.rainviewer.com/v2/radar/1596543000/256/" + zoom + "/" + coord.x + "/" + coord.y + "/5/1_0.png";
+		getTileUrl: function (coord, zoom, i) {
+			var radarLayer = "https://tilecache.rainviewer.com/v2/radar/" + nowPrecip + "/256/" + zoom + "/" + coord.x + "/" + coord.y + "/5/1_0.png";
 			return radarLayer;
 		},
 		tileSize: new google.maps.Size(256, 256)
@@ -311,3 +312,5 @@ function initMap() {
 
 	map.overlayMapTypes.push(imageMapType);
 }
+
+
